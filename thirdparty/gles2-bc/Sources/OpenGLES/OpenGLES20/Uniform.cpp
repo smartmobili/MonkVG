@@ -68,8 +68,9 @@ void UniformBase::setFather(UniformBase *f)
 namespace OpenGLES {
 	namespace OpenGLES2 {
 		
+		// VS2013 seems to need the inline keyword for this method...
 		template <>
-		void Uniform<bool>::setValue( bool val )
+		inline void Uniform<bool>::setValue( bool val )
 		{
 			// TODO: Profile whether this if clause is really an optimization
 			if (value != val) {
