@@ -17,9 +17,6 @@
 #ifndef OpenGLESImplementation_H_
 #define OpenGLESImplementation_H_
 
-#ifdef _WINDOWS
-#define NOMINMAX
-#endif
 
 namespace OpenGLES {
 	class OpenGLESImplementation {

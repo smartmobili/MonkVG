@@ -45,8 +45,10 @@
 #elif WIN32
     #define PLATFORM_IS_GLES 0
     #define WIN32_LEAN_AND_MEAN
-    #include <windows.h>
+	#define NOMINMAX
+	#include <windows.h>
     #include <stdint.h>
+	#include <algorithm>
     #include <GL/glew.h>
     #pragma comment(lib,"glew32.lib")
 

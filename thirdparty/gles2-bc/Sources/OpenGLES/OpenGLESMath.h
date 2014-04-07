@@ -19,10 +19,6 @@
 
 #define PI 3.1415926535897932384626433832795f
 
-#ifdef _WINDOWS
-#define NOMINMAX
-#include <algorithm>
-#endif
 #include <math.h>
 #include <string.h>
 #include "OpenGLESUtil.h"

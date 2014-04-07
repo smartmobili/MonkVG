@@ -14,10 +14,6 @@
  limitations under the License.
  */
 
-#ifdef _WINDOWS
-#define NOMINMAX
-#include <algorithm>
-#endif
 
 //#include <OpenGLES/ES2/gl.h>
 //#include <OpenGLES/ES2/glext.h>
