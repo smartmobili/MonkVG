@@ -37,8 +37,10 @@ typedef int             GLfixed;
 typedef int             GLclampx;
 
 /* GL types for handling large vertex buffer objects */
+#ifndef __GLEW_H__
 typedef long             GLintptr;
 typedef long             GLsizeiptr;
+#endif
 
 /* Extensions */
 #define GL_OES_byte_coordinates           1
