@@ -367,7 +367,7 @@ namespace MonkVG {
          */
         
         // initialize gradient space
-        float gradientSize = 32768 * 0.05;
+		float gradientSize = static_cast<float>(32768 * 0.05);
 		VGfloat p1[2] = { gradientSize/2, gradientSize/2};
 		VGfloat p0[2] = { -p1[0], p1[1]};
         

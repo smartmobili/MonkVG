@@ -202,7 +202,7 @@ namespace MonkVG {
 								  VGfloat *cx0, VGfloat *cy0, VGfloat *cx1, VGfloat *cy1) {
 		VGfloat COS, SIN, x0p, y0p, x1p, y1p, pcx0, pcy0, pcx1, pcy1;
 		// Convert rotation angle from degrees to radians 
-		rot *= M_PI/180.0;
+		rot *= (VGfloat) (M_PI / 180.0);
 		// Pre-compute rotation matrix entries 
 		COS = cos(rot); 
 		SIN = sin(rot);
@@ -528,7 +528,7 @@ namespace MonkVG {
 						for ( VGfloat g = startAngle; g < endAngle; g+=360/steps ) {
 							v3_t c;
 							
-							VGfloat alpha = g * (M_PI / 180.0f);
+							VGfloat alpha = static_cast<VGfloat>(g * (M_PI / 180.0f));
 							VGfloat sinalpha = sinf( alpha );
 							VGfloat cosalpha = cosf( alpha );
 							c.x = cx0[0] + (rh * cosalpha * cosbeta - rv * sinalpha * sinbeta);
@@ -827,7 +827,7 @@ namespace MonkVG {
 						for ( VGfloat g = startAngle; g < endAngle + (360/steps); g+=360/steps ) {
 							v2_t c;
 							
-							VGfloat alpha = g * (M_PI / 180.0f);
+							VGfloat alpha = static_cast<VGfloat>(g * (M_PI / 180.0f));
 							VGfloat sinalpha = sinf( alpha );
 							VGfloat cosalpha = cosf( alpha );
 							c.x = cx0[0] + (rh * cosalpha * cosbeta - rv * sinalpha * sinbeta);

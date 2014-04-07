@@ -31,7 +31,7 @@ bool OpenGLESFile::open()
 	std::string p = getPath();
         fp = fopen(p.c_str(), "r");
 	
-	return fp;
+	return (fp != 0);
 }
 
 char * OpenGLESFile::gets(char * buf, int size)

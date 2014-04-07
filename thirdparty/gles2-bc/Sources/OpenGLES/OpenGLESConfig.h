@@ -19,6 +19,7 @@
 
 #include <string>
 
+
 namespace OpenGLES {
 
 class OpenGLESConfig

@@ -37,9 +37,13 @@ typedef int             GLfixed;
 typedef int             GLclampx;
 
 /* GL types for handling large vertex buffer objects */
-#ifndef __GLEW_H__
+#ifndef _WINDOWS
 typedef long             GLintptr;
 typedef long             GLsizeiptr;
+#else
+#include <crtdefs.h>
+typedef ptrdiff_t       GLintptr;
+typedef ptrdiff_t       GLsizeiptr;
 #endif
 
 /* Extensions */
@@ -609,12 +613,14 @@ typedef long             GLsizeiptr;
 
 #define GL_ALPHA_SCALE                    0x0D1C
 
+#ifndef GL_SRC0_RGB
 #define GL_SRC0_RGB                       0x8580
 #define GL_SRC1_RGB                       0x8581
 #define GL_SRC2_RGB                       0x8582
 #define GL_SRC0_ALPHA                     0x8588
 #define GL_SRC1_ALPHA                     0x8589
 #define GL_SRC2_ALPHA                     0x858A
+#endif
 
 #define GL_DOT3_RGB                       0x86AE
 #define GL_DOT3_RGBA                      0x86AF

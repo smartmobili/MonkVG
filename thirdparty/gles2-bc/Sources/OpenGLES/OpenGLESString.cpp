@@ -58,7 +58,7 @@ OpenGLESString OpenGLESString::operator+ (int val)
 	return OpenGLESString(string + out.str());
 }
 
-#if !defined(ANDROID)
+#if !defined(ANDROID) && !defined(WIN32)
 OpenGLESString OpenGLESString::operator+ (size_t val)
 {
 	std::stringstream out;

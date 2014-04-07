@@ -14,6 +14,11 @@
  limitations under the License.
  */
 
+#ifdef _WINDOWS
+#define NOMINMAX
+#include <algorithm>
+#endif
+
 //#include <OpenGLES/ES2/gl.h>
 //#include <OpenGLES/ES2/glext.h>
 #define INCLUDE_ES1_HEADERS 0
@@ -1268,10 +1273,10 @@ void OpenGLES20Context::glTexEnvi (GLenum target, GLenum pname, GLint param)
 			openGLESState.setTextureEnvOperandAlpha(pname - GL_OPERAND0_ALPHA, param);
 			break;
 		case GL_RGB_SCALE:
-			openGLESState.setTextureEnvRGBScale(param);
+			openGLESState.setTextureEnvRGBScale((GLfloat)param);
 			break;
 		case GL_ALPHA_SCALE:
-			openGLESState.setTextureEnvAlphaScale(param);
+			openGLESState.setTextureEnvAlphaScale((GLfloat)param);
 			break;
 		default:
 			LOG_MESSAGE(__FILE__, __LINE__, OpenGLESString("ERROR: Unknown parameter ") + pname);

@@ -20,6 +20,7 @@
 #define INCLUDE_ES1_HEADERS 0
 #include "OpenGLESPlatform.h"
 #include <stdlib.h>
+#include <algorithm>
 #include "OpenGLESMath.h"
 
 using namespace OpenGLES::OpenGLES2;
