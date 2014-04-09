@@ -73,6 +73,7 @@ extern "C" {
     typedef enum {
         VG_RENDERING_BACKEND_TYPE_OPENGLES11              = 0,
         VG_RENDERING_BACKEND_TYPE_OPENGLES20              = 1,
+		VG_RENDERING_BACKEND_TYPE_DIRECT2D				  = 2,
         VG_RENDERING_BACKEND_TYPE_FORCE_SIZE              = VG_MAX_ENUM
     } VGRenderingBackendTypeMNK;
 	
