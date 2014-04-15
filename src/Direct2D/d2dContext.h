@@ -13,6 +13,13 @@
 #include "mkContext.h"
 #include "glPlatform.h"
 
+// Os specific
+//#include <atlbase.h> // for CComPtr
+#include <d2d1.h>
+#include <d2d1helper.h>
+#include <dwrite.h>
+#include <wincodec.h>
+
 
 namespace MonkVG {
 
@@ -88,9 +95,13 @@ namespace MonkVG {
 
 
 	private:
-		HWND _hwnd;
+		HWND m_hwnd;
+		//CComPtr<ID2D1Factory> m_d2dFactory;
+		//CComPtr<ID2D1HwndRenderTarget> m_renderTarget;
+	
 		ID2D1Factory* _pDirect2dFactory;
 		ID2D1HwndRenderTarget* _pRenderTarget;
+		
 
 
 		// restore values to play nice with other apps
@@ -98,6 +109,8 @@ namespace MonkVG {
 		float	_projection[16];
 		float	_modelview[16];
 		float	_color[4];
+
+		ID2D1HwndRenderTarget* d2dRenderTarget() { return _pRenderTarget; }
 	};
 }
 

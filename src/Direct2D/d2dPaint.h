@@ -13,14 +13,22 @@
 #include "mkPaint.h"
 #include "d2dImage.h"
 
+#include <d2d1.h>
+#include <d2d1helper.h>
+#include <dwrite.h>
+#include <wincodec.h>
+
 namespace MonkVG {
 
+	//class ID2D1HwndRenderTarget;
 
 	class Direct2DPaint : public IPaint {
 	public:
 		Direct2DPaint();
 		virtual ~Direct2DPaint();
 		void setGLState();
+
+
 		void buildLinearGradientImage(VGfloat pathWidth, VGfloat pathHeight);
 		void buildRadialGradientImage(VGfloat pathWidth, VGfloat pathHeight);
 		void buildLinear2x3GradientImage(VGfloat pathWidth, VGfloat pathHeight);
@@ -34,8 +42,6 @@ namespace MonkVG {
 	private:
 		bool		_isDirty;
 		VGImage		_gradientImage;
-
-
 	};
 }
 

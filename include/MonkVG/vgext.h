@@ -89,7 +89,7 @@ extern "C" {
     VG_API_CALL void VG_API_ENTRY vgDumpBatchMNK( VGBatchMNK batch, void **vertices, size_t *size ) VG_API_EXIT;
   
 	/* context MonkVG */
-    VG_API_CALL VGboolean vgCreateContextMNK( VGint width, VGint height, VGRenderingBackendTypeMNK backend );
+	VG_API_CALL VGboolean vgCreateContextMNK(VGint width, VGint height, VGRenderingBackendTypeMNK backend, VGHandle reserved);
     VG_API_CALL void vgResizeSurfaceMNK( VGint width, VGint height );
     VG_API_CALL void vgDestroyContextMNK( void );
 

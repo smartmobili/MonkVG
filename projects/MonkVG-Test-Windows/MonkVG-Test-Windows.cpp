@@ -18,7 +18,7 @@ BOOL				InitInstance(HINSTANCE, int);
 LRESULT CALLBACK	WndProc(HWND, UINT, WPARAM, LPARAM);
 INT_PTR CALLBACK	About(HWND, UINT, WPARAM, LPARAM);
 LRESULT				OnCreate(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam);
-
+LRESULT				OnPaint(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam);
 
 
 int APIENTRY _tWinMain(_In_ HINSTANCE hInstance,
@@ -156,7 +156,9 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 		break;
 	case WM_PAINT:
 		hdc = BeginPaint(hWnd, &ps);
-		// TODO: Add any drawing code here...
+		
+
+
 		EndPaint(hWnd, &ps);
 		break;
 	case WM_DESTROY:
@@ -171,8 +173,49 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 
 LRESULT OnCreate(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam)
 {
+	/*
+	LPCREATESTRUCT lpCreateStruct = (LPCREATESTRUCT)lParam;
+	VGint width = lpCreateStruct->cx;
+	VGint height = lpCreateStruct->cy;
+	*/
+
+	RECT rc;
+	::GetClientRect(hWnd, &rc);
+
+	VGint width = rc.right - rc.left;
+	VGint height = rc.bottom - rc.top;
+	vgCreateContextMNK(width, height, VGRenderingBackendTypeMNK::VG_RENDERING_BACKEND_TYPE_DIRECT2D, (VGHandle)hWnd);
+
 	return 0;
 }
+
+LRESULT OnPaint(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam)
+{
+
+	VGPaint strokePaint = vgCreatePaint();
+	vgSetPaint(strokePaint, VG_STROKE_PATH);
+
+	VGfloat color[4] = { 1.0f, 0.0f, 0.0f, 1.0f };
+	vgSetParameterfv(strokePaint, VG_PAINT_COLOR, 4, &color[0]);
+
+	VGPath line = vgCreatePath(VG_PATH_FORMAT_STANDARD, VG_PATH_DATATYPE_F, 1, 0, 0, 0, VG_PATH_CAPABILITY_ALL);
+	vguLine(line, 20, 20, 130, 130);
+
+	VGPath square = vgCreatePath(VG_PATH_FORMAT_STANDARD, VG_PATH_DATATYPE_F, 1, 0, 0, 0, VG_PATH_CAPABILITY_ALL);
+	vguRect(square, 10.0f, 10.0f, 130.0f, 50.0f);
+
+	vgSetf(VG_STROKE_LINE_WIDTH, 7.0f);
+	vgDrawPath(line, VG_STROKE_PATH);
+	vgDrawPath(square, VG_STROKE_PATH);
+
+
+
+	::ValidateRect(hWnd, NULL);
+	return 0;
+}
+
+
+
 
 
 // Message handler for about box.

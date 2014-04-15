@@ -25,12 +25,17 @@
 
 #elif WIN32
 
+	#define USE_DIRECT2D
     #define WIN32_LEAN_AND_MEAN
     #include <windows.h>
     #include <stdint.h>
-    #include <GL/glew.h>
-    #pragma comment(lib,"glew32.lib")
+	#include <GL/glew.h>
 
+#ifndef USE_DIRECT2D
+    #pragma comment(lib,"glew32.lib")
+#else
+	#pragma comment(lib,"d2d1.lib")
+#endif
 #elif __linux__
 
 #if defined(USE_OPENGL)

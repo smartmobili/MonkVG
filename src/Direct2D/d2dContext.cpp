@@ -28,22 +28,47 @@ namespace MonkVG {
 
 	Direct2DContext::Direct2DContext()
 		: IContext()
+		, _pDirect2dFactory(nullptr)
+		, _pRenderTarget(nullptr)
 	{
+
 	}
 
 
 
 	bool Direct2DContext::Initialize(VGHandle reserved) {
 
-		_hwnd = (HWND)reserved;
+		bool ret = false;
 
-		if (SUCCEEDED(CoInitialize(NULL)))
+		m_hwnd = (HWND)reserved;
+
+		if (SUCCEEDED(::CoInitialize(NULL)))
 		{
+			HRESULT hr = S_OK;
 
+			// Create a Direct2D factory.
+			hr = D2D1CreateFactory(D2D1_FACTORY_TYPE_SINGLE_THREADED, &_pDirect2dFactory);
+			if (SUCCEEDED(hr))
+			{
+				RECT rc;
+				::GetClientRect(m_hwnd, &rc);
+
+				// Create a Direct2D render target.
+				D2D1_SIZE_U size = D2D1::SizeU(rc.right - rc.left, rc.bottom - rc.top);
+				hr = _pDirect2dFactory->CreateHwndRenderTarget(
+					D2D1::RenderTargetProperties(),
+					D2D1::HwndRenderTargetProperties(m_hwnd, size),
+					&_pRenderTarget);
+
+				if (SUCCEEDED(hr))
+				{
+					ret = true;
+				}
+			}
 		}
 
 
-		return true;
+		return ret;
 	}
 
 	void Direct2DContext::resize() {
@@ -82,23 +107,21 @@ namespace MonkVG {
 
 	void Direct2DContext::destroyPaint(IPaint* paint) {
 		
-		//delete (MonkVG::Direct2DPaint*)paint;
+		delete (MonkVG::Direct2DPaint*)paint;
 	}
 
 	IPaint* Direct2DContext::createPaint() {
-		
-		void * paint;
-		/*MonkVG::Direct2DPaint *paint = new MonkVG::Direct2DPaint();
+
+		MonkVG::Direct2DPaint *paint = new MonkVG::Direct2DPaint();
 		if (paint == 0)
-			setError(VG_OUT_OF_MEMORY_ERROR);*/
+			setError(VG_OUT_OF_MEMORY_ERROR);
 		return (IPaint*)paint;
 	}
 
 	IBatch* Direct2DContext::createBatch() {
-		void * batch;
-		/*MonkVG::Direct2DBatch *batch = new MonkVG::Direct2DBatch();
+		MonkVG::Direct2DBatch *batch = new MonkVG::Direct2DBatch();
 		if (batch == 0)
-			setError(VG_OUT_OF_MEMORY_ERROR);*/
+			setError(VG_OUT_OF_MEMORY_ERROR);
 		return (IBatch*)batch;
 	}
 
@@ -111,8 +134,7 @@ namespace MonkVG {
 	IImage* Direct2DContext::createImage(VGImageFormat format,
 		VGint width, VGint height,
 		VGbitfield allowedQuality) {
-		return nullptr;
-		//return new Direct2DImage(format, width, height, allowedQuality);
+		return new Direct2DImage(format, width, height, allowedQuality);
 	}
 	void Direct2DContext::destroyImage(IImage* image) {
 		if (image) {
@@ -121,8 +143,7 @@ namespace MonkVG {
 	}
 
 	IFont* Direct2DContext::createFont() {
-		return nullptr;
-		//return new MonkVG::Direct2DFont();
+		return new MonkVG::Direct2DFont();
 	}
 	void Direct2DContext::destroyFont(IFont* font) {
 		if (font) {
@@ -135,6 +156,12 @@ namespace MonkVG {
 	/// state 
 	void Direct2DContext::setStrokePaint(IPaint* paint) {
 
+		if (paint != _stroke_paint) {
+			IContext::setStrokePaint(paint);
+			Direct2DPaint* glPaint = (Direct2DPaint*)_stroke_paint;
+			//glPaint->setGLState();
+			glPaint->setIsDirty(true);
+		}
 	}
 
 	void Direct2DContext::setFillPaint(IPaint* paint) {

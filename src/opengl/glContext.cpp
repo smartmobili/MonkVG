@@ -15,7 +15,6 @@
 #include "glFont.h"
 #include "mkCommon.h"
 
-
 namespace MonkVG {
 	
 	//// singleton implementation ////
