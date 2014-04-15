@@ -201,6 +201,10 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\..\include\MonkVG\EGL\egl.h" />
+    <ClInclude Include="..\..\include\MonkVG\EGL\eglext.h" />
+    <ClInclude Include="..\..\include\MonkVG\EGL\eglplatform.h" />
+    <ClInclude Include="..\..\include\MonkVG\KHR\khrplatform.h" />
     <ClInclude Include="..\..\src\Direct2D\d2dBatch.h">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>

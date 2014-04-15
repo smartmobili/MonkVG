@@ -9,11 +9,11 @@
 
 #include "d2dContext.h"
 #include "d2dPath.h"
-//#include "d2dPaint.h"
-//#include "d2dBatch.h"
-//#include "d2dImage.h"
-//#include "d2dFont.h"
-//#include "mkCommon.h"
+#include "d2dPaint.h"
+#include "d2dBatch.h"
+#include "d2dImage.h"
+#include "d2dFont.h"
+#include "mkCommon.h"
 
 
 namespace MonkVG {

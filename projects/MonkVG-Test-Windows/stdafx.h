@@ -17,5 +17,7 @@
 #include <memory.h>
 #include <tchar.h>
 
+#include <MonkVG/VG/openvg.h>
+#include <MonkVG/VG/vgu.h>
+#include <MonkVG/VG/vgext.h>
 
-// TODO: reference additional headers your program requires here

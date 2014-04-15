@@ -37,6 +37,12 @@
     <Filter Include="Source Files\Direct2D">
       <UniqueIdentifier>{81b2bde3-c799-4379-ba85-1c0007b7743d}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\EGL">
+      <UniqueIdentifier>{4ba08078-1bc8-4a94-8b7f-6b4a8aeb70c2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\KHR">
+      <UniqueIdentifier>{4028a03a-7aad-4770-8856-e9cdea27fc80}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\src\mkBaseObject.cpp">
@@ -364,6 +370,18 @@
     </ClInclude>
     <ClInclude Include="..\..\src\Direct2D\d2dFont.h">
       <Filter>Source Files\Direct2D</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\MonkVG\EGL\egl.h">
+      <Filter>Header Files\EGL</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\MonkVG\EGL\eglext.h">
+      <Filter>Header Files\EGL</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\MonkVG\EGL\eglplatform.h">
+      <Filter>Header Files\EGL</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\MonkVG\KHR\khrplatform.h">
+      <Filter>Header Files\KHR</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

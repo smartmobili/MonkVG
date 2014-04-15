@@ -22,8 +22,8 @@
 #include <GLES/gl.h>
 #include <GLES/glext.h>
 
-#include <MonkVG/openvg.h>
-#include <MonkVG/vgu.h>
+#include <MonkVG/VG/openvg.h>
+#include <MonkVG/VG/vgu.h>
 
 #include <stdio.h>
 #include <stdlib.h>

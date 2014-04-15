@@ -10,8 +10,8 @@
 #ifndef __mkContext_h__
 #define __mkContext_h__
 
-#include "MonkVG/openvg.h"
-#include "MonkVG/vgext.h"
+#include "MonkVG/VG/openvg.h"
+#include "MonkVG/VG/vgext.h"
 #include "mkPath.h"
 #include "mkPaint.h"
 #include "mkImage.h"
