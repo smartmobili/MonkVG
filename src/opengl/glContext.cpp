@@ -71,7 +71,7 @@ namespace MonkVG {
 		}
 	}	
 	
-	bool OpenGLContext::Initialize() {
+	bool OpenGLContext::Initialize(VGHandle reserved) {
 	
 		CHECK_GL_ERROR;
         

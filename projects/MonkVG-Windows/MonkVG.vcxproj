@@ -205,6 +205,10 @@
     <ClInclude Include="..\..\include\MonkVG\EGL\eglext.h" />
     <ClInclude Include="..\..\include\MonkVG\EGL\eglplatform.h" />
     <ClInclude Include="..\..\include\MonkVG\KHR\khrplatform.h" />
+    <ClInclude Include="..\..\include\MonkVG\openvg.h" />
+    <ClInclude Include="..\..\include\MonkVG\vgext.h" />
+    <ClInclude Include="..\..\include\MonkVG\vgplatform.h" />
+    <ClInclude Include="..\..\include\MonkVG\vgu.h" />
     <ClInclude Include="..\..\src\Direct2D\d2dBatch.h">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
@@ -238,10 +242,6 @@
     <ClInclude Include="..\..\src\mkMath.h" />
     <ClInclude Include="..\..\src\mkPaint.h" />
     <ClInclude Include="..\..\src\mkPath.h" />
-    <ClInclude Include="..\..\include\VG\openvg.h" />
-    <ClInclude Include="..\..\include\VG\vgext.h" />
-    <ClInclude Include="..\..\include\VG\vgplatform.h" />
-    <ClInclude Include="..\..\include\VG\vgu.h" />
     <ClInclude Include="..\..\src\opengl\glBatch.h" />
     <ClInclude Include="..\..\src\opengl\glContext.h" />
     <ClInclude Include="..\..\src\opengl\glFont.h" />

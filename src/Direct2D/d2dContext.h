@@ -23,7 +23,7 @@ namespace MonkVG {
 
 		Direct2DContext();
 
-		virtual bool Initialize();
+		virtual bool Initialize(VGHandle reserved);
 		virtual bool Terminate();
 
 		//// factories ////
@@ -88,6 +88,10 @@ namespace MonkVG {
 
 
 	private:
+		HWND _hwnd;
+		ID2D1Factory* _pDirect2dFactory;
+		ID2D1HwndRenderTarget* _pRenderTarget;
+
 
 		// restore values to play nice with other apps
 		int		_viewport[4];

@@ -28,7 +28,7 @@ namespace MonkVG {
 	
 		OpenGLContext();
 		
-		virtual bool Initialize();
+		virtual bool Initialize(VGHandle reserved);
 		virtual bool Terminate();
 		
 		//// factories ////

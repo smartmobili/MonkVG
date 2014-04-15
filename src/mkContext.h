@@ -10,8 +10,8 @@
 #ifndef __mkContext_h__
 #define __mkContext_h__
 
-#include "MonkVG/VG/openvg.h"
-#include "MonkVG/VG/vgext.h"
+#include "MonkVG/openvg.h"
+#include "MonkVG/vgext.h"
 #include "mkPath.h"
 #include "mkPaint.h"
 #include "mkImage.h"
@@ -28,7 +28,7 @@ namespace MonkVG {
 		
 		// singleton instance
 		static IContext& instance();
-		virtual bool Initialize() = 0;
+		virtual bool Initialize(VGHandle reserved) = 0;
 		virtual bool Terminate() = 0;
 		
 		//// factories ////

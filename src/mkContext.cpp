@@ -13,13 +13,13 @@ using namespace MonkVG;
 
 //static VGContext *g_context = NULL;
 
-VG_API_CALL VGboolean vgCreateContextMNK( VGint width, VGint height, VGRenderingBackendTypeMNK backend )
+VG_API_CALL VGboolean vgCreateContextMNK(VGint width, VGint height, VGRenderingBackendTypeMNK backend, VGHandle reserved)
 {
 	MK_LOG("Creating context %d, %d, %d", width, height, (int)backend);
 
     IContext::instance().setRenderingBackendType( backend );
     
-	IContext::instance().Initialize();
+	IContext::instance().Initialize(reserved);
 
 	IContext::instance().setWidth( width );
 	IContext::instance().setHeight( height );

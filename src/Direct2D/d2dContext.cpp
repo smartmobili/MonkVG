@@ -33,7 +33,14 @@ namespace MonkVG {
 
 
 
-	bool Direct2DContext::Initialize() {
+	bool Direct2DContext::Initialize(VGHandle reserved) {
+
+		_hwnd = (HWND)reserved;
+
+		if (SUCCEEDED(CoInitialize(NULL)))
+		{
+
+		}
 
 
 		return true;

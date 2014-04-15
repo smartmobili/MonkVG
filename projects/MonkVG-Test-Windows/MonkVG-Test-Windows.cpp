@@ -3,6 +3,7 @@
 
 #include "stdafx.h"
 #include "MonkVG-Test-Windows.h"
+//#include <EGL/egl.h>
 
 #define MAX_LOADSTRING 100
 
@@ -16,7 +17,7 @@ ATOM				MyRegisterClass(HINSTANCE hInstance);
 BOOL				InitInstance(HINSTANCE, int);
 LRESULT CALLBACK	WndProc(HWND, UINT, WPARAM, LPARAM);
 INT_PTR CALLBACK	About(HWND, UINT, WPARAM, LPARAM);
-LRESULT				OnCreate(UINT uMsg, WPARAM wParam, LPARAM lParam);
+LRESULT				OnCreate(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam);
 
 
 
@@ -135,7 +136,7 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 	switch (message)
 	{
 	case WM_CREATE:
-		OnCreate(message, wParam, lParam);
+		OnCreate(hWnd, message, wParam, lParam);
 		break;
 	case WM_COMMAND:
 		wmId    = LOWORD(wParam);
@@ -168,7 +169,7 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 }
 
 
-LRESULT OnCreate(UINT uMsg, WPARAM wParam, LPARAM lParam)
+LRESULT OnCreate(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam)
 {
 	return 0;
 }
