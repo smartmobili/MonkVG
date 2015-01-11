@@ -905,6 +905,7 @@ namespace MonkVG {
 				_strokeVBO = -1;
 			}
 			
+			/*((OpenGLContext*)&IContext::instance())->gl()->glGenBuffers(1, &_strokeVBO);*/
 			GL->glGenBuffers( 1, &_strokeVBO );
 			GL->glBindBuffer( GL_ARRAY_BUFFER, _strokeVBO );
 			GL->glBufferData( GL_ARRAY_BUFFER, _strokeVertices.size() * sizeof(float) * 2, &_strokeVertices[0], GL_STATIC_DRAW );

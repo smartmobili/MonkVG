@@ -30,18 +30,12 @@
     <ClInclude Include="MonkVG-Test-Windows.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="CxWindow.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="MonkVG-Test-Windows.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="CxWindow.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

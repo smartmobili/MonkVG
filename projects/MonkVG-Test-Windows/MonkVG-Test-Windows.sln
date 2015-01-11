@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2013
-VisualStudioVersion = 12.0.30110.0
+VisualStudioVersion = 12.0.30501.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "MonkVG-Test-Windows", "MonkVG-Test-Windows.vcxproj", "{F17B560E-20F0-4A8A-B4C3-B769369C0D55}"
 	ProjectSection(ProjectDependencies) = postProject
@@ -12,18 +12,40 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "MonkVG", "..\MonkVG-Windows
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug MX|Win32 = Debug MX|Win32
+		Debug MX|x64 = Debug MX|x64
 		Debug|Win32 = Debug|Win32
+		Debug|x64 = Debug|x64
+		Release MX|Win32 = Release MX|Win32
+		Release MX|x64 = Release MX|x64
 		Release|Win32 = Release|Win32
+		Release|x64 = Release|x64
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{F17B560E-20F0-4A8A-B4C3-B769369C0D55}.Debug MX|Win32.ActiveCfg = Debug|Win32
+		{F17B560E-20F0-4A8A-B4C3-B769369C0D55}.Debug MX|Win32.Build.0 = Debug|Win32
+		{F17B560E-20F0-4A8A-B4C3-B769369C0D55}.Debug MX|x64.ActiveCfg = Debug|Win32
 		{F17B560E-20F0-4A8A-B4C3-B769369C0D55}.Debug|Win32.ActiveCfg = Debug|Win32
 		{F17B560E-20F0-4A8A-B4C3-B769369C0D55}.Debug|Win32.Build.0 = Debug|Win32
+		{F17B560E-20F0-4A8A-B4C3-B769369C0D55}.Debug|x64.ActiveCfg = Debug|Win32
+		{F17B560E-20F0-4A8A-B4C3-B769369C0D55}.Release MX|Win32.ActiveCfg = Release|Win32
+		{F17B560E-20F0-4A8A-B4C3-B769369C0D55}.Release MX|Win32.Build.0 = Release|Win32
+		{F17B560E-20F0-4A8A-B4C3-B769369C0D55}.Release MX|x64.ActiveCfg = Release|Win32
 		{F17B560E-20F0-4A8A-B4C3-B769369C0D55}.Release|Win32.ActiveCfg = Release|Win32
 		{F17B560E-20F0-4A8A-B4C3-B769369C0D55}.Release|Win32.Build.0 = Release|Win32
+		{F17B560E-20F0-4A8A-B4C3-B769369C0D55}.Release|x64.ActiveCfg = Release|Win32
+		{DEB0D7E2-D03D-41C2-8852-CCC3A32DB39D}.Debug MX|Win32.ActiveCfg = Debug|Win32
+		{DEB0D7E2-D03D-41C2-8852-CCC3A32DB39D}.Debug MX|Win32.Build.0 = Debug|Win32
+		{DEB0D7E2-D03D-41C2-8852-CCC3A32DB39D}.Debug MX|x64.ActiveCfg = Debug|Win32
 		{DEB0D7E2-D03D-41C2-8852-CCC3A32DB39D}.Debug|Win32.ActiveCfg = Debug|Win32
 		{DEB0D7E2-D03D-41C2-8852-CCC3A32DB39D}.Debug|Win32.Build.0 = Debug|Win32
+		{DEB0D7E2-D03D-41C2-8852-CCC3A32DB39D}.Debug|x64.ActiveCfg = Debug|Win32
+		{DEB0D7E2-D03D-41C2-8852-CCC3A32DB39D}.Release MX|Win32.ActiveCfg = Release|Win32
+		{DEB0D7E2-D03D-41C2-8852-CCC3A32DB39D}.Release MX|Win32.Build.0 = Release|Win32
+		{DEB0D7E2-D03D-41C2-8852-CCC3A32DB39D}.Release MX|x64.ActiveCfg = Release|Win32
 		{DEB0D7E2-D03D-41C2-8852-CCC3A32DB39D}.Release|Win32.ActiveCfg = Release|Win32
 		{DEB0D7E2-D03D-41C2-8852-CCC3A32DB39D}.Release|Win32.Build.0 = Release|Win32
+		{DEB0D7E2-D03D-41C2-8852-CCC3A32DB39D}.Release|x64.ActiveCfg = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

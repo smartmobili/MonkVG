@@ -43,6 +43,9 @@
     <Filter Include="Header Files\KHR">
       <UniqueIdentifier>{4028a03a-7aad-4770-8856-e9cdea27fc80}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\KHR\glew">
+      <UniqueIdentifier>{8f48349a-f2a5-4ca4-aa7e-42e17721f037}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\src\mkBaseObject.cpp">
@@ -382,6 +385,15 @@
     </ClInclude>
     <ClInclude Include="..\..\include\MonkVG\vgu.h">
       <Filter>Header Files\VG</Filter>
+    </ClInclude>
+    <ClInclude Include="glew\include\GL\glew.h">
+      <Filter>Header Files\KHR\glew</Filter>
+    </ClInclude>
+    <ClInclude Include="glew\include\GL\glxew.h">
+      <Filter>Header Files\KHR\glew</Filter>
+    </ClInclude>
+    <ClInclude Include="glew\include\GL\wglew.h">
+      <Filter>Header Files\KHR\glew</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

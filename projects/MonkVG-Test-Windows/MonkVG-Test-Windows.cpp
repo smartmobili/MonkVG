@@ -11,6 +11,10 @@
 HINSTANCE hInst;								// current instance
 TCHAR szTitle[MAX_LOADSTRING];					// The title bar text
 TCHAR szWindowClass[MAX_LOADSTRING];			// the main window class name
+HDC   ghDC;
+HGLRC ghRC;
+
+#define SWAPBUFFERS SwapBuffers(ghDC)
 
 // Forward declarations of functions included in this code module:
 ATOM				MyRegisterClass(HINSTANCE hInstance);
@@ -19,7 +23,9 @@ LRESULT CALLBACK	WndProc(HWND, UINT, WPARAM, LPARAM);
 INT_PTR CALLBACK	About(HWND, UINT, WPARAM, LPARAM);
 LRESULT				OnCreate(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam);
 LRESULT				OnPaint(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam);
-
+BOOL				bSetupPixelFormat(HDC hdc);
+void				drawScene(void);
+void				resize(VGint width, VGint height);
 
 int APIENTRY _tWinMain(_In_ HINSTANCE hInstance,
                      _In_opt_ HINSTANCE hPrevInstance,
@@ -46,15 +52,35 @@ int APIENTRY _tWinMain(_In_ HINSTANCE hInstance,
 
 	hAccelTable = LoadAccelerators(hInstance, MAKEINTRESOURCE(IDC_MONKVGTESTWINDOWS));
 
-	// Main message loop:
-	while (GetMessage(&msg, NULL, 0, 0))
+	/* animation loop */
+	while (1) {
+		/*
+		*  Process all pending messages
+		*/
+
+		while (PeekMessage(&msg, NULL, 0, 0, PM_NOREMOVE) == TRUE)
+		{
+			if (GetMessage(&msg, NULL, 0, 0))
+			{
+				TranslateMessage(&msg);
+				DispatchMessage(&msg);
+			}
+			else {
+				return TRUE;
+			}
+		}
+		drawScene();
+	}
+	
+	
+	/*while (GetMessage(&msg, NULL, 0, 0))
 	{
 		if (!TranslateAccelerator(msg.hwnd, hAccelTable, &msg))
 		{
 			TranslateMessage(&msg);
 			DispatchMessage(&msg);
 		}
-	}
+	}*/
 
 	return (int) msg.wParam;
 }
@@ -132,6 +158,7 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 	int wmId, wmEvent;
 	PAINTSTRUCT ps;
 	HDC hdc;
+	RECT rect;
 
 	switch (message)
 	{
@@ -156,12 +183,22 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 		break;
 	case WM_PAINT:
 		hdc = BeginPaint(hWnd, &ps);
-		
-
 
 		EndPaint(hWnd, &ps);
 		break;
+	case WM_SIZE:
+		GetClientRect(hWnd, &rect);
+		resize(rect.right, rect.bottom);
+		break;
 	case WM_DESTROY:
+		
+		if (ghRC)
+			wglDeleteContext(ghRC);
+		if (ghDC)
+			ReleaseDC(hWnd, ghDC);
+
+		vgDestroyContextMNK();
+
 		PostQuitMessage(0);
 		break;
 	default:
@@ -179,19 +216,26 @@ LRESULT OnCreate(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam)
 	VGint height = lpCreateStruct->cy;
 	*/
 
+	ghDC = GetDC(hWnd);
+	if (!bSetupPixelFormat(ghDC))
+		PostQuitMessage(0);
+
+	ghRC = wglCreateContext(ghDC);
+	wglMakeCurrent(ghDC, ghRC);
+
+
 	RECT rc;
 	::GetClientRect(hWnd, &rc);
 
 	VGint width = rc.right - rc.left;
 	VGint height = rc.bottom - rc.top;
-	vgCreateContextMNK(width, height, VGRenderingBackendTypeMNK::VG_RENDERING_BACKEND_TYPE_DIRECT2D, (VGHandle)hWnd);
+	vgCreateContextMNK(width, height, VGRenderingBackendTypeMNK::VG_RENDERING_BACKEND_TYPE_OPENGLES20, (VGHandle)hWnd);
 
 	return 0;
 }
 
-LRESULT OnPaint(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam)
+void drawScene(void)
 {
-
 	VGPaint strokePaint = vgCreatePaint();
 	vgSetPaint(strokePaint, VG_STROKE_PATH);
 
@@ -208,11 +252,38 @@ LRESULT OnPaint(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam)
 	vgDrawPath(line, VG_STROKE_PATH);
 	vgDrawPath(square, VG_STROKE_PATH);
 
-
-
-	::ValidateRect(hWnd, NULL);
-	return 0;
+	SwapBuffers(ghDC);
 }
+
+void resize(VGint width, VGint height)
+{
+	vgResizeSurfaceMNK(width, height);
+}
+
+//LRESULT OnPaint(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam)
+//{
+//
+//	VGPaint strokePaint = vgCreatePaint();
+//	vgSetPaint(strokePaint, VG_STROKE_PATH);
+//
+//	VGfloat color[4] = { 1.0f, 0.0f, 0.0f, 1.0f };
+//	vgSetParameterfv(strokePaint, VG_PAINT_COLOR, 4, &color[0]);
+//
+//	VGPath line = vgCreatePath(VG_PATH_FORMAT_STANDARD, VG_PATH_DATATYPE_F, 1, 0, 0, 0, VG_PATH_CAPABILITY_ALL);
+//	vguLine(line, 20, 20, 130, 130);
+//
+//	VGPath square = vgCreatePath(VG_PATH_FORMAT_STANDARD, VG_PATH_DATATYPE_F, 1, 0, 0, 0, VG_PATH_CAPABILITY_ALL);
+//	vguRect(square, 10.0f, 10.0f, 130.0f, 50.0f);
+//
+//	vgSetf(VG_STROKE_LINE_WIDTH, 7.0f);
+//	vgDrawPath(line, VG_STROKE_PATH);
+//	vgDrawPath(square, VG_STROKE_PATH);
+//
+//
+//
+//	::ValidateRect(hWnd, NULL);
+//	return 0;
+//}
 
 
 
@@ -236,4 +307,40 @@ INT_PTR CALLBACK About(HWND hDlg, UINT message, WPARAM wParam, LPARAM lParam)
 		break;
 	}
 	return (INT_PTR)FALSE;
+}
+
+
+BOOL bSetupPixelFormat(HDC hdc)
+{
+	PIXELFORMATDESCRIPTOR pfd, *ppfd;
+	int pixelformat;
+
+	ppfd = &pfd;
+
+	ppfd->nSize = sizeof(PIXELFORMATDESCRIPTOR);
+	ppfd->nVersion = 1;
+	ppfd->dwFlags = PFD_DRAW_TO_WINDOW | PFD_SUPPORT_OPENGL |
+		PFD_DOUBLEBUFFER;
+	ppfd->dwLayerMask = PFD_MAIN_PLANE;
+	ppfd->iPixelType = PFD_TYPE_COLORINDEX;
+	ppfd->cColorBits = 8;
+	ppfd->cDepthBits = 16;
+	ppfd->cAccumBits = 0;
+	ppfd->cStencilBits = 0;
+
+	pixelformat = ChoosePixelFormat(hdc, ppfd);
+
+	if ((pixelformat = ChoosePixelFormat(hdc, ppfd)) == 0)
+	{
+		MessageBox(NULL, _T("ChoosePixelFormat failed"), _T("Error"), MB_OK);
+		return FALSE;
+	}
+
+	if (SetPixelFormat(hdc, pixelformat, ppfd) == FALSE)
+	{
+		MessageBox(NULL, _T("SetPixelFormat failed"), _T("Error"), MB_OK);
+		return FALSE;
+	}
+
+	return TRUE;
 }

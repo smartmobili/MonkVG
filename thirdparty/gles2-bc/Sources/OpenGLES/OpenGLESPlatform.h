@@ -48,9 +48,8 @@
 	#define NOMINMAX
 	#include <windows.h>
     #include <stdint.h>
-	#include <algorithm>
-    #include <GL/glew.h>
-    #pragma comment(lib,"glew32.lib")
+	#include <algorithm> 
+	#include <GL/glew.h>
 
 #elif __linux__
 
